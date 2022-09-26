@@ -1,3 +1,15 @@
+#' Generic wrapper function to get JSON data from URL address
+#'
+#' @param URL a URL address
+#' @param query API query
+#'
+#' @return A list containing the received data
+#' @export
+#' @import httr
+#' @import jsonlite
+#'
+#' @examples
+#' get_data("http://api.kolada.se/v2/municipality", query="title=Linköping")
 get_data <- function(URL,query){
   stopifnot(is.character(URL), is.character(query))
   stopifnot(!http_error(URL))
@@ -7,6 +19,15 @@ get_data <- function(URL,query){
   return(list_data)
 }
 
+#' function to get municipality ID
+#'
+#' @param muni_name name of municipality
+#'
+#' @return the municipality ID
+#' @export
+#'
+#' @examples
+#' get_muni_id("Linköping")
 get_muni_id <- function(muni_name){
   stopifnot(is.character(muni_name))
   muni_list <- get_data("http://api.kolada.se/v2/municipality", query=paste("title=",muni_name,sep=""))
@@ -14,6 +35,15 @@ get_muni_id <- function(muni_name){
   return(muni_id)
 }
 
+#' function to get emission data for given municipality
+#'
+#' @param muni_name name of municipality
+#'
+#' @return data frame containing different emission data by year
+#' @export
+#'
+#' @examples
+#' get_figures("Linköping")
 get_figures <- function(muni_name){
   stopifnot(is.character(muni_name))
   names_list <- list("N00401","N85078","N85072","N85075","N85077","N85073","N85076")
@@ -33,6 +63,17 @@ get_figures <- function(muni_name){
   return(figures_df)
 }
 
+#' function to plot emission data of given municipality
+#'
+#' @param muni_name name of municipality
+#'
+#' @return a list of ggplots
+#' @export
+#' @import ggplot2
+#' @import stats
+#'
+#' @examples
+#' plot_figures("Linköping")
 plot_figures <- function(muni_name){
   stopifnot(is.character(muni_name))
   plot_titles <- list(

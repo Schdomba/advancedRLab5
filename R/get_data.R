@@ -4,12 +4,11 @@
 #' @param query API query
 #'
 #' @return A list containing the received data
-#' @export
 #' @import httr
 #' @import jsonlite
 #'
-#' @examples
-#' get_data("http://api.kolada.se/v2/municipality", query="title=Linköping")
+# @examples
+# get_data("http://api.kolada.se/v2/municipality", query="title=Linköping")
 get_data <- function(URL,query){
   stopifnot(is.character(URL), is.character(query))
   stopifnot(!http_error(URL))
@@ -24,10 +23,9 @@ get_data <- function(URL,query){
 #' @param muni_name name of municipality
 #'
 #' @return the municipality ID
-#' @export
 #'
-#' @examples
-#' get_muni_id("Linköping")
+# @examples
+# get_muni_id("Linköping")
 get_muni_id <- function(muni_name){
   stopifnot(is.character(muni_name))
   muni_list <- get_data("http://api.kolada.se/v2/municipality", query=paste("title=",muni_name,sep=""))

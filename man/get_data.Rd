@@ -17,6 +17,3 @@ A list containing the received data
 \description{
 Generic wrapper function to get JSON data from URL address
 }
-\examples{
-get_data("http://api.kolada.se/v2/municipality", query="title=Linköping")
-}

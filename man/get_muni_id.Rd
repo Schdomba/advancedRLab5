@@ -15,6 +15,3 @@ the municipality ID
 \description{
 function to get municipality ID
 }
-\examples{
-get_muni_id("Linköping")
-}

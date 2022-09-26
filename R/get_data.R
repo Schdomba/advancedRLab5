@@ -1,16 +1,21 @@
 get_data <- function(URL,query){
+  stopifnot(is.character(URL), is.character(query))
+  stopifnot(!http_error(URL))
+
   http_data <- GET(URL,query=query)
   list_data <- fromJSON(rawToChar(http_data$content))
   return(list_data)
 }
 
 get_muni_id <- function(muni_name){
-  muni_list <- get_data("http://api.kolada.se/v2/municipality", query=list(title=muni_name))
+  stopifnot(is.character(muni_name))
+  muni_list <- get_data("http://api.kolada.se/v2/municipality", query=paste("title=",muni_name,sep=""))
   muni_id <- muni_list$values$id
   return(muni_id)
 }
 
 get_figures <- function(muni_name){
+  stopifnot(is.character(muni_name))
   names_list <- list("N00401","N85078","N85072","N85075","N85077","N85073","N85076")
   names_str <- paste(names_list,collapse=",")
   muni_id <- get_muni_id(muni_name)
@@ -29,6 +34,7 @@ get_figures <- function(muni_name){
 }
 
 plot_figures <- function(muni_name){
+  stopifnot(is.character(muni_name))
   plot_titles <- list(
     "Total greenhouse gas emissions to air, tonnes of CO2 equivalents per capita",
     "Greenhouse gas emissions to air, agriculture, tonnes of CO2 equivalents per capita",

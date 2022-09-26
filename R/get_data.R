@@ -81,7 +81,7 @@ plot_figures <- function(muni_name){
     "Greenhouse gas emissions to air, machinery, tonnes of CO2 equivalents per capita",
     "Greenhouse gas emissions to air, industry, tonnes of CO2 equivalents per capita",
     "Greenhouse gas emissions to air, transport, tonnes of CO2 equivalents per capita",
-    "Greenhouse gas emissions to air, electricity and district heating, tonnes of CO2 equivalents per capita"
+    "Greenhouse gas emissions to air, electricity and district heating,\n tonnes of CO2 equivalents per capita"
   )
   df1 <- get_figures(muni_name)
   plotlist <- list()

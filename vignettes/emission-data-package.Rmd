@@ -1,0 +1,48 @@
+---
+title: "emission-data-package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{emission-data-package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.dim = c(8, 6),
+  fig.align = 'center',
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+This vignette summarizes the Lab 5 package and all its functions. To use the package, run the command below :
+```{r setup}
+library(advancedRLab5)
+```
+
+## get_figures()
+The function `get_figures()` downloads emission data from kolada.se for
+the municipality chosen by the user. The function argument `muni_name` is the name of the municipality
+as a string. Here is an example how to use it:
+```{r}
+tail(get_figures("Linköping"))
+```
+The function returns a `data.frame` containing all the emission data. The
+columns are:
+
+* years <- the year in which the data has been gathered
+* N00401 <- Total greenhouse gas emissions to air, tonnes of CO2 equivalents per capita
+* N85078 <- Greenhouse gas emissions to air, agriculture, tonnes of CO2 equivalents per capita
+* N85072 <- Greenhouse gas emissions to air, heating, tonnes of CO2 equivalents per capita
+* N85075 <- Greenhouse gas emissions to air, machinery, tonnes of CO2 equivalents per capita
+* N85077 <- Greenhouse gas emissions to air, industry, tonnes of CO2 equivalents per capita
+* N85073 <- Greenhouse gas emissions to air, transport, tonnes of CO2 equivalents per capita
+* N85076 <- Greenhouse gas emissions to air, electricity and district heating, tonnes of CO2 equivalents per capita
+
+## plot_figures()
+The function `plot_figures()` downloads emission data from kolada.se for the 
+municipality chosen by the user and plots the graphs in different plots.
+Here is an example how to use it:
+```{r}
+plot_figures("Linköping")
+```

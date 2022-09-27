@@ -91,7 +91,15 @@ plot_figures <- function(muni_name){
     plotlist[[i]] <- ggplot() +
       geom_col(data=temp_df, aes_string(x="years",y=names(df1[-1])[i]), fill = '#1070AA') +
       ylab("tonnes of CO2 equivalents per capita") +
-      ggtitle(plot_titles[i])
+      ggtitle(plot_titles[i]) +
+      theme(
+        plot.title = element_text( size=16, face="bold",family = "Times"),
+        axis.title.x = element_text(size=14, face="plain"),
+        axis.title.y = element_text(size=14, face="plain"),
+        text = element_text(size=16)
+
+        )
+
   }
 
   return(plotlist)
